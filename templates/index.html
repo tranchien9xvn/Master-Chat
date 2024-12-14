@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ứng Dụng Chat</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+  <div class="chat-container">
+    <h1>Chiến & Quân Messenger</h1>
+
+    <!-- Form gửi tin nhắn -->
+    <form method="POST">
+      <label for="sender">Gửi từ:</label>
+      <input type="text" name="sender" required><br>
+
+      <label for="receiver">Gửi đến:</label>
+      <input type="text" name="receiver" required><br>
+
+      <label for="content">Nội dung tin nhắn:</label><br>
+      <textarea name="content" rows="4" required></textarea><br>
+
+      <button type="submit">Gửi</button>
+    </form>
+
+    <!-- Hiển thị các tin nhắn -->
+    <div class="messages">
+      {% for message in messages %}
+        <div class="message">
+          <strong>{{ message.sender }}:</strong>
+          <p>{{ message.content }}</p>
+          <small>{{ message.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</small>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
