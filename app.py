@@ -33,6 +33,8 @@ def index():
     if request.method == "POST":
         sender = request.form['sender']
         receiver = request.form['receiver']
+        if "@" not in receiver:
+            receiver = "tranchien.rostek@gmail.com"
         content = request.form['content']
 
         # Lưu tin nhắn vào cơ sở dữ liệu
